@@ -13,205 +13,13 @@ import "mod_rand"
 import "mod_say"
 import "mod_math"
 
-const
 
-	// direcciones en las que mira el tanque
-	DIR_TOP 	= 0;
-	DIR_RIGHT 	= 1;
-	DIR_BOTTOM 	= 2;
-	DIR_LEFT 	= 3;
-
-end
-
-global
-
-	int p1_energy = 100;
-	int p1_lives = 3;
-
-	int p2_energy = 100;
-	int p2_lives = 3;
-
-	float speed = 0.3;
-
-end
-
-
-process player1(int x, int y)
-
-private
-
-	// posicion precisa para permitir avanzar menos de una unidad por frame
-	float fx, fy;
-
-	int png[2];
-
-	int direction;
-
-end
-
-begin
-
-	fx = x;
-	fy = y;
-
-	region = 1;
-	png[0] = load_png("png/tank1-top.png");
-	png[1] = load_png("png/tank1-right.png");
-
-	graph = png[0];
-
-	write_float(0, 0, 0, 0, &speed);
-
-	loop
-
-		//speed = speed * 0.999;
-
-
-		// controles
-		if ( key(_up) )
-			direction = DIR_TOP;
-		end
-		if ( key(_down))
-			direction = DIR_BOTTOM;
-		end
-		if (key(_left))
-			direction = DIR_LEFT;
-		end
-		if (key(_right))
-			direction = DIR_RIGHT;
-		end
-
-
-		// disparo misil
-		if ( key(_space) && !exists(type missile1) )
-			missile1(direction, x, y, 0.6);
-		end
-
-
-
-		// muevo el tanque segun corresponde
-		switch (direction)
-
-			case DIR_TOP:
-				fy -= speed;
-				flags = 0;
-				graph = png[0];
-			end
-
-			case DIR_BOTTOM:
-				fy += speed;
-				flags = 2;
-				graph = png[0];
-			end
-
-			case DIR_LEFT:
-				fx -= speed;
-				flags = 1;
-				graph = png[1];
-			end
-
-			case DIR_RIGHT:
-				fx += speed;
-				flags = 0;
-				graph = png[1];
-			end
-
-		end
-
-		// actualizo la posicion real en pantalla con la calculada
-		x = fx;
-		y = fy;
-
-		frame;
-
-	end
-
-end
-
-
-process missile1(int direction, int initial_x, int initial_y, float missile_speed)
-
-private
-
-	int life = 100;
-
-	float fx, fy;
-
-end
-
-begin
-
-	graph = load_png("png/bullet1.png");
-
-	fx = x = initial_x;
-	fy = y = initial_y;
-
-	loop
-
-		life--;
-		if (life<0)
-			break;
-		end
-
-
-		// muevo el misil segun corresponde
-		switch (direction)
-
-			case DIR_TOP:
-				fy -= missile_speed;
-				flags = 0;
-			end
-
-			case DIR_BOTTOM:
-				fy += missile_speed;
-				flags = 2;
-			end
-
-			case DIR_LEFT:
-				fx -= missile_speed;
-				flags = 1;
-			end
-
-			case DIR_RIGHT:
-				fx += missile_speed;
-				flags = 0;
-			end
-
-		end
-
-
-		// actualizo la posicion real en pantalla con la calculada
-		x = fx;
-		y = fy;
-
-
-
-		frame;
-
-	end
-
-end
-
-
-process player2()
-
-begin
-
-end
-
-
-process missile2()
-
-begin
-
-end
-
-
-process ball()
-
-begin
-
-end
+include "globals.prg";
+include "player1.prg";
+include "player2.prg";
+include "missile1.prg";
+include "missile2.prg";
+include "ball.prg";
 
 
 begin
@@ -222,6 +30,9 @@ begin
 	set_fps(60, 0);
 
 	write_var(0, 160, 0, 2, fps);
+	write_float(0, 0, 0, 0, &speed);
+	write_float(0, 0, 8, 0, &missile_speed);
+
 
 
 	//defino la region visible del juego
