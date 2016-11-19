@@ -12,6 +12,7 @@ import "mod_time"
 import "mod_rand"
 import "mod_say"
 import "mod_math"
+import "mod_wm"
 
 
 include "globals.prg";
@@ -23,6 +24,11 @@ include "ball.prg";
 
 
 begin
+
+	id_icon = load_png("png/icon.png");
+	set_icon(0, id_icon );
+	set_title("RetroTanks-2600");
+	unload_map(0, id_icon);
 
 	// resolucion del juego
 	scale_resolution = 06400480;
@@ -53,7 +59,6 @@ begin
 		end
 
 		if( key(_ESC) ) //debug
-			say("exit");
 			exit("exit");
 		end
 

@@ -10,6 +10,8 @@ end
 
 global
 
+	int id_icon;
+
 	int fcounter = 0;
 
 	int p1_energy = 100;
