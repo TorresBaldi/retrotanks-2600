@@ -12,6 +12,24 @@ begin
 
 	graph = load_png("png/bullet1.png");
 
+
+	// agrego offset de acuerdo a direccion
+	switch (direction)
+		case DIR_TOP:
+			initial_y -= 4;
+		end
+		case DIR_BOTTOM:
+			initial_y += 4;
+		end
+		case DIR_LEFT:
+			initial_x -= 4;
+		end
+		case DIR_RIGHT:
+			initial_x += 4;
+		end
+	end
+
+
 	fx = x = initial_x;
 	fy = y = initial_y;
 
