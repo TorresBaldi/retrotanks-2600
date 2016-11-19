@@ -53,25 +53,25 @@ begin
 		switch (direction)
 
 			case DIR_TOP:
-				fy -= speed;
+				fy -= p1_speed;
 				flags = 0;
 				graph = png[0];
 			end
 
 			case DIR_BOTTOM:
-				fy += speed;
+				fy += p1_speed;
 				flags = 2;
 				graph = png[0];
 			end
 
 			case DIR_LEFT:
-				fx -= speed;
+				fx -= p1_speed;
 				flags = 1;
 				graph = png[1];
 			end
 
 			case DIR_RIGHT:
-				fx += speed;
+				fx += p1_speed;
 				flags = 0;
 				graph = png[1];
 			end

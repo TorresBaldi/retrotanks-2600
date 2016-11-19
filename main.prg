@@ -30,8 +30,8 @@ begin
 	set_fps(60, 0);
 
 	write_var(0, 160, 0, 2, fps);
-	write_float(0, 0, 0, 0, &speed);
-	write_float(0, 0, 8, 0, &missile_speed);
+	write_float(0, 0, 0, 0, &p1_speed);
+	write_float(0, 0, 8, 0, &p1_missile_speed);
 
 
 
@@ -41,11 +41,20 @@ begin
 
 	player1(20,20);
 
+	ball();
+
 
 	loop
 
+		// un contador general de frames, para no usar timers
+		fcounter++;
+		if (fcounter >= 2147483647)
+			fcounter = 0;
+		end
+
 		if( key(_ESC) ) //debug
-			exit();
+			say("exit");
+			exit("exit");
 		end
 
 		frame;

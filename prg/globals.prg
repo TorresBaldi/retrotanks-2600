@@ -10,13 +10,14 @@ end
 
 global
 
+	int fcounter = 0;
+
 	int p1_energy = 100;
 	int p1_lives = 3;
+	float p1_speed = 0.3;
+	float p1_missile_speed = 0.6;
 
-	int p2_energy = 100;
-	int p2_lives = 3;
-
-	float speed = 0.3;
-	float missile_speed = 0.6;
+	//float speed = 0.3;
+	//float missile_speed = 0.6;
 
 end

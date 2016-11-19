@@ -45,22 +45,22 @@ begin
 		switch (direction)
 
 			case DIR_TOP:
-				fy -= missile_speed;
+				fy -= p1_missile_speed;
 				flags = 0;
 			end
 
 			case DIR_BOTTOM:
-				fy += missile_speed;
+				fy += p1_missile_speed;
 				flags = 2;
 			end
 
 			case DIR_LEFT:
-				fx -= missile_speed;
+				fx -= p1_missile_speed;
 				flags = 1;
 			end
 
 			case DIR_RIGHT:
-				fx += missile_speed;
+				fx += p1_missile_speed;
 				flags = 0;
 			end
 
