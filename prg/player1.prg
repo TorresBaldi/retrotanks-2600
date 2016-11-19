@@ -28,7 +28,7 @@ begin
 
 
 		// controles
-		if ( key(_up) )
+		if ( key(_up) && can_move_up(fx,fy) )
 			direction = DIR_TOP;
 		end
 		if ( key(_down))
@@ -53,9 +53,13 @@ begin
 		switch (direction)
 
 			case DIR_TOP:
-				fy -= speed;
-				flags = 0;
-				graph = png[0];
+				if (can_move_up(fx,fy))
+					fy -= speed;
+					flags = 0;
+					graph = png[0];
+				else
+					direction = DIR_BOTTOM;
+				end
 			end
 
 			case DIR_BOTTOM:

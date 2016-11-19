@@ -15,6 +15,7 @@ import "mod_math"
 
 
 include "globals.prg";
+include "functions.prg";
 include "player1.prg";
 include "player2.prg";
 include "missile1.prg";
@@ -39,7 +40,7 @@ begin
 	region_define(1, 0, 10, 160, 100);
 
 
-	player1(20,20);
+	player1(30,30);
 
 
 	loop
